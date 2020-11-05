@@ -9,5 +9,7 @@ export class Overground1Scene extends ex.Scene {
         console.log("entered overground1");
         this.add(this.p1);
         this.add(this.p2);
+        this.p1.pos.setTo(300, 20);
+        this.p2.pos.setTo(300, 120);
     }
 }
