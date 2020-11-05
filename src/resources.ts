@@ -2,7 +2,8 @@ import { ex } from "./imports.js";
 
 export const resources = {
     character1: new ex.Texture("../res/character_animations.png"),
-    character2: new ex.Texture("../res/character2_animations.png")
+    character2: new ex.Texture("../res/character2_animations.png"),
+    spaceBg: new ex.Texture("../res/SpaceBackground2.png")
 }
 
 export const loader = new ex.Loader();
