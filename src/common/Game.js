@@ -155,16 +155,7 @@ export default class Game extends GameEngine {
     }
 
     clientSideDraw() {
-        let players = this.world.queryObjects({ instanceType: Player });
-
-        if (players.length !== 2) {
-            return;
-        }
-
-        // Sync to the network replicated world.
-        this.renderer.game.currentScene.p1.pos.x = players[0].position.x;
-        this.renderer.game.currentScene.p1.pos.y = players[0].position.y;
-        this.renderer.game.currentScene.p2.pos.x = players[1].position.x;
-        this.renderer.game.currentScene.p2.pos.y = players[1].position.y;
+        // Sync to the network replicated game engine.
+        this.renderer.syncToLance(this);
     }
 }
