@@ -7,3 +7,6 @@ npm-debug.log
 *.trace
 **/*.png
 stats.json
+dist-server
+dist/bundle.js
+dist/bundle.js.map
