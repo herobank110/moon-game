@@ -15,7 +15,7 @@ const JUMP_SPEED = 5;
 const JUMP_TIME = 10;
 const MOVE_SPEED = 5;
 
-class Player extends DynamicObject {
+export class Player extends DynamicObject {
     constructor(gameEngine, options, props) {
         super(gameEngine, options, props);
         this.inAir = 0;
@@ -155,20 +155,16 @@ export default class Game extends GameEngine {
     }
 
     clientSideDraw() {
-        function updateEl(el, obj) {
-            // Need to invert since y starts at the top.
-            el.style.top = (HEIGHT - obj.position.y - PLAYER_HEIGHT) + 'px';
-            el.style.left = obj.position.x + 'px';
-            el.style.background = `#ffffff`
-        }
-
         let players = this.world.queryObjects({ instanceType: Player });
 
         if (players.length !== 2) {
             return;
         }
 
-        updateEl(document.querySelector(".player1"), players[0]);
-        updateEl(document.querySelector(".player2"), players[1]);
+        // Sync to the network replicated world.
+        this.renderer.game.currentScene.p1.pos.x = players[0].position.x;
+        this.renderer.game.currentScene.p1.pos.y = players[0].position.y;
+        this.renderer.game.currentScene.p2.pos.x = players[1].position.x;
+        this.renderer.game.currentScene.p2.pos.y = players[1].position.y;
     }
 }

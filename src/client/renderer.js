@@ -30,6 +30,10 @@ export class MoonRenderer extends Renderer {
     }
 
     draw(t, dt) {
-        // TODO
+        // The entire world from lance-gg is probably not valid at this point.
+        // See: Game#clientSideDraw()
+
+        // This causes the gameEngine to emit client__draw events.
+        return super.draw(t, dt);
     }
 }
