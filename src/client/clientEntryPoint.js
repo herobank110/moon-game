@@ -1,6 +1,7 @@
 import querystring from 'query-string';
 import Game from '../common/Game';
-import { Lib, Renderer, ClientEngine } from 'lance-gg';
+import { Lib, ClientEngine } from 'lance-gg';
+import { MoonRenderer } from './renderer';
 const qsOptions = querystring.parse(location.search);
 
 // default options, overwritten by query-string options
@@ -19,6 +20,6 @@ let options = Object.assign(defaults, qsOptions);
 
 // create a client engine and a game engine
 const gameEngine = new Game(options);
-const clientEngine = new ClientEngine(gameEngine, options, Renderer);
+const clientEngine = new ClientEngine(gameEngine, options, MoonRenderer);
 
 document.addEventListener('DOMContentLoaded', function(e) { clientEngine.start(); });

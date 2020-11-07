@@ -6,6 +6,7 @@ yarn-error.log
 npm-debug.log
 *.trace
 **/*.png
+!dist/**/*.png
 stats.json
 dist-server
 dist/bundle.js
