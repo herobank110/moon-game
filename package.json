@@ -12,6 +12,7 @@
     "excalibur": "0.24.5",
     "express": "^4.14.0",
     "lance-gg": "^4.0.3",
+    "nodemon": "^2.0.6",
     "query-string": "^4.2.3",
     "socket.io": "^2.1.1",
     "webpack": "^3.8.1"
