@@ -1,6 +1,6 @@
 import { Renderer } from 'lance-gg';
-import { resources, loader } from './resources';
-import { Color, Engine, Scene } from 'excalibur';
+import { loader } from './resources';
+import { Color, Engine } from 'excalibur';
 import { MenuScene, OvergroundScene } from './scenes';
 
 /**
@@ -8,7 +8,6 @@ import { MenuScene, OvergroundScene } from './scenes';
  */
 export class MoonRenderer extends Renderer {
     init() {
-        super.init();
         // Create the excalibur engine.
         this.game = new Engine({
             antialiasing: false,
@@ -16,6 +15,9 @@ export class MoonRenderer extends Renderer {
         });
         this.initScenes();
         this.game.start(loader);
+
+        // This does some magic and returns a promise.
+        return super.init();
     }
 
     initScenes() {
