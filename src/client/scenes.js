@@ -23,8 +23,8 @@ export class OvergroundScene extends Scene {
     makeP1(engine) {
         const pl = new Actor({ x: 0, y: 0, width: 100, height: 100 });
         const spr = new SpriteSheet(resources.character1, 4, 6, 16, 16);
-        pl.addDrawing('idle', spr.getAnimationBetween(engine, 0, 6, 100));
-        pl.addDrawing('walk', spr.getAnimationBetween(engine, 6, 12, 100));
+        pl.addDrawing('idle', spr.getAnimationBetween(engine, 0, 6, 125));
+        pl.addDrawing('walk', spr.getAnimationBetween(engine, 6, 12, 125));
         pl.setDrawing('idle');
         this.add(pl);
 
@@ -34,9 +34,9 @@ export class OvergroundScene extends Scene {
 
     makeP2(engine) {
         const pl = new Actor({ x: 10, y: 0, width: 100, height: 100 });
-        const spr = new SpriteSheet(resources.character2, 4, 6, 16, 16);
-        pl.addDrawing('idle', spr.getAnimationBetween(engine, 0, 6, 100));
-        pl.addDrawing('walk', spr.getAnimationBetween(engine, 6, 12, 100));
+        const spr = new SpriteSheet(resources.character2, 4, 6, 20, 16);
+        pl.addDrawing('idle', spr.getAnimationBetween(engine, 0, 6, 125));
+        pl.addDrawing('walk', spr.getAnimationBetween(engine, 6, 12, 125));
         pl.setDrawing('idle');
         this.add(pl);
 

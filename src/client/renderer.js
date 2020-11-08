@@ -47,9 +47,10 @@ export class MoonRenderer extends Renderer {
 
         const p1 = players[0];
         const p2 = players[1];
+        // inverted y axis.
         this.exEngine.currentScene.p1.pos.x = p1.position.x;
-        this.exEngine.currentScene.p1.pos.y = p1.position.y;
+        this.exEngine.currentScene.p1.pos.y = -p1.position.y;
         this.exEngine.currentScene.p2.pos.x = p2.position.x;
-        this.exEngine.currentScene.p2.pos.y = p2.position.y;
+        this.exEngine.currentScene.p2.pos.y = -p2.position.y;
     }
 }
