@@ -11,12 +11,12 @@ const PLAYER_WIDTH = 30;
 const PLAYER_HEIGHT = 50;
 const HEIGHT = 600;
 const FALL_SPEED = 1.5;
-const JUMP_SPEED = 0.05;
+const JUMP_SPEED = 1.5;
 const JUMP_TIME = 2;
 const MOVE_SPEED = 1.6;
 const MOVE_SPEED_IN_AIR = 0.02;
 /** Movement tends to go right faster. Differ left speed to compensate. */
-const MOVE_LEFT_SPEED_MULT = 2;
+const MOVE_LEFT_SPEED_MULT = 1;
 
 export class Player extends DynamicObject {
     constructor(gameEngine, options, props) {

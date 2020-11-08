@@ -4,7 +4,7 @@ import socketIO from 'socket.io';
 import { Lib, ServerEngine } from 'lance-gg';
 import Game from './common/Game';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const INDEX = path.join(__dirname, '../dist/index.html');
 
 // define routes and socket
