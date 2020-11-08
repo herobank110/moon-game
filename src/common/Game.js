@@ -79,13 +79,14 @@ export default class Game extends GameEngine {
                 player.inAir = 0;
             }
 
-            if (player.position.x <= 0) {
-                player.velocity.x = 0;
-                player.position.x = 1;
-            } else if (player.position.x + PLAYER_WIDTH >= WIDTH) {
-                player.velocity.x = 0;
-                player.position.x = WIDTH - PLAYER_WIDTH - 1;
-            }
+            // Don't limit play area.
+            // if (player.position.x <= 0) {
+            //     player.velocity.x = 0;
+            //     player.position.x = 1;
+            // } else if (player.position.x + PLAYER_WIDTH >= WIDTH) {
+            //     player.velocity.x = 0;
+            //     player.position.x = WIDTH - PLAYER_WIDTH - 1;
+            // }
         });
     }
 
