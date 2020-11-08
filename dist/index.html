@@ -14,6 +14,10 @@
             align-items: center;
         }
 
+        #moon-game-logo:not(.is-active) {
+            display: none;
+        }
+
         #moon-game-logo>div {
             margin-bottom: 340px;
             width: 365px;
@@ -41,10 +45,11 @@
         function d() {
             const c = document.querySelector('canvas');
             if (c !== null && !bound) {
-                const b = document.getElementById('excalibur-play-root');
-                if (b !== null) {
-                    const f = document.getElementById('moon-game-logo');
-                    if (f !== null) {
+                const f = document.getElementById('moon-game-logo');
+                if (f !== null) {
+                    f.classList.add('is-active');
+                    const b = document.getElementById('excalibur-play-root');
+                    if (b !== null) {
                         // click, mouseup events don't reach this stage.
                         new MutationObserver((e) => {
                             if (e[0].removedNodes) {
