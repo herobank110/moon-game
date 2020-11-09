@@ -36,14 +36,6 @@ class LocalPlayer extends Actor {
             ctx.beginPath();
             makeCross(ctx, this.laserPointingTo.x, this.laserPointingTo.y, 5, 5);
             ctx.stroke();
-
-            // // Draw aiming laser beam.
-            // ctx.setLineDash([3, 5]);
-            // ctx.strokeStyle = Color.Yellow.toHex();
-            // ctx.beginPath();
-            // ctx.moveTo(this.pos.x, this.pos.y);
-            // ctx.lineTo(this.laserPointingTo.x, this.laserPointingTo.y);
-            // ctx.stroke();
         }
     }
 }

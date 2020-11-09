@@ -1,4 +1,6 @@
+import { Color } from 'excalibur';
 import { GameEngine, DynamicObject, SimplePhysicsEngine, TwoVector, KeyboardControls, BaseTypes } from 'lance-gg';
+import { lancePosToExcalibur } from '../client/renderer';
 
 // /////////////////////////////////////////////////////////
 //
@@ -104,6 +106,16 @@ export default class Game extends GameEngine {
                 player.position.x += player.inAir ? MOVE_SPEED_IN_AIR : MOVE_SPEED;
             } else if (inputData.input === "attack") {
                 const aim = new TwoVector(inputData.options.aimX, inputData.options.aimY);
+                // TODO collision check and implement damage system
+
+                if (this.renderer && this.renderer.exEngine) {
+                    this.renderer.addLaserBeam({
+                        start: lancePosToExcalibur(player.position),
+                        end: lancePosToExcalibur(aim),
+                        duration: 1.5,
+                        color: Color.Yellow
+                    });
+                }
             }
         }
     }
