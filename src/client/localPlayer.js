@@ -1,4 +1,4 @@
-import { Actor, Color, SpriteSheet, Vector } from 'excalibur';
+import { Actor, Color, SpriteSheet } from 'excalibur';
 import { resources } from './resources';
 
 
@@ -19,14 +19,31 @@ class LocalPlayer extends Actor {
     draw(ctx, delta) {
         super.draw(ctx, delta);
 
+        /** Draw cross with center and half size */
+        function makeCross(ctx, cx, cy, hx, hy) {
+            // Make the vertical line down.
+            ctx.moveTo(cx, cy - hy);
+            ctx.lineTo(cx, cy + hy);
+
+            // Draw horizontal "cross" line.
+            ctx.moveTo(cx - hx, cy);
+            ctx.lineTo(cx + hx, cy);
+        }
+
         if (this.laserPointingTo) {
-            // Draw aiming laser beam.
-            ctx.setLineDash([5, 15]);
+            // Draw aiming crosshairs.
             ctx.strokeStyle = Color.Yellow.toHex();
             ctx.beginPath();
-            ctx.moveTo(this.pos.x, this.pos.y);
-            ctx.lineTo(this.laserPointingTo.x, this.laserPointingTo.y);
+            makeCross(ctx, this.laserPointingTo.x, this.laserPointingTo.y, 5, 5);
             ctx.stroke();
+
+            // // Draw aiming laser beam.
+            // ctx.setLineDash([3, 5]);
+            // ctx.strokeStyle = Color.Yellow.toHex();
+            // ctx.beginPath();
+            // ctx.moveTo(this.pos.x, this.pos.y);
+            // ctx.lineTo(this.laserPointingTo.x, this.laserPointingTo.y);
+            // ctx.stroke();
         }
     }
 }
