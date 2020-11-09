@@ -23,6 +23,8 @@ export class Player extends DynamicObject {
         super(gameEngine, options, props);
         this.inAir = 0;
         this.jumpTime = 0;
+        /** Local only, used for client side drawing. */
+        this.laserPointingTo = null;
     }
 
     static get netScheme() {
@@ -154,8 +156,13 @@ export default class Game extends GameEngine {
     clientSideInit() {
         this.controls = new KeyboardControls(this.renderer.clientEngine);
         this.controls.bindKey("up", "up", { repeat: true });
+        this.controls.bindKey("w", "up", { repeat: true });
+
         this.controls.bindKey("left", "left", { repeat: true });
+        this.controls.bindKey("a", "left", { repeat: true });
+
         this.controls.bindKey("right", "right", { repeat: true });
+        this.controls.bindKey("d", "right", { repeat: true });
     }
 
     clientSideDraw() {

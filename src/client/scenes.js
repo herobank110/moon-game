@@ -1,4 +1,5 @@
-import { Scene, Actor, SpriteSheet } from 'excalibur';
+import { Scene, Actor } from 'excalibur';
+import { Player1, Player2 } from './localPlayer';
 import { resources } from './resources';
 
 export class MenuScene extends Scene {
@@ -21,33 +22,23 @@ export class OvergroundScene extends Scene {
     }
 
     makeP1(engine) {
-        const pl = new Actor({ x: 0, y: 0, width: 100, height: 100 });
-        const spr = new SpriteSheet(resources.character1, 4, 6, 16, 16);
-        pl.addDrawing('idle', spr.getAnimationBetween(engine, 0, 6, 125));
-        pl.addDrawing('walk', spr.getAnimationBetween(engine, 6, 12, 125));
-        pl.setDrawing('idle');
+        const pl = new Player1({ x: 0, y: 0, width: 100, height: 100 });
         this.add(pl);
-
         this.p1 = pl;
         return this.p1;
     }
 
     makeP2(engine) {
-        const pl = new Actor({ x: 10, y: 0, width: 100, height: 100 });
-        const spr = new SpriteSheet(resources.character2, 4, 6, 20, 16);
-        pl.addDrawing('idle', spr.getAnimationBetween(engine, 0, 6, 125));
-        pl.addDrawing('walk', spr.getAnimationBetween(engine, 6, 12, 125));
-        pl.setDrawing('idle');
+        const pl = new Player2({ x: 10, y: 0, width: 100, height: 100 });
         this.add(pl);
-
         this.p2 = pl;
         return this.p2;
     }
 
-    makeSpaceBg(spr, offset) {
+    makeSpaceBg(spr, offset, height) {
         const bg = new Actor();
         bg.addDrawing(spr);
-        bg.pos.setTo(offset, -50);
+        bg.pos.setTo(offset, (height === undefined ? -50 : height));
         this.add(bg);
         return bg;
     }
