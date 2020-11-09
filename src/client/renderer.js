@@ -21,14 +21,26 @@ export class MoonRenderer extends Renderer {
             const player = this.getExPlayer();
             if (player) {
                 player.pointLaser(event.worldPos);
-                console.log('calling laser');
+            }
+        });
+
+        this.exEngine.input.pointers.primary.on('down', (event) => {
+            if (this.lanceEngine) {
+                const player = this.getExPlayer();
+                if (player) {
+                    this.lanceEngine.controls.clientEngine.sendInput('attack', {
+                        // It's easier to pass components than get confused
+                        // between lance and excalibur vectors.
+                        aimX: player.laserPointingTo.x,
+                        aimY: player.laserPointingTo.y
+                    });
+                }
             }
         });
 
         // This does some magic and returns a promise.
         return super.init();
     }
-
 
     /** 
      * Get player ID from 1, or null if invalid.
@@ -114,13 +126,6 @@ export class MoonRenderer extends Renderer {
         const p2 = players[1];
         lancePosToExcalibur(p1.position, this.exEngine.currentScene.p1.pos);
         lancePosToExcalibur(p2.position, this.exEngine.currentScene.p2.pos);
-
-        const myLancePl = this.getLancePlayer();
-        const myExPl = this.getExPlayer();
-        if (myLancePl && myExPl && myLancePl.laserPointingTo !== null) {
-            // Save local setting in the lance player.
-            lancePosToExcalibur(myLancePl.laserPointingTo, myExPl.laserPointingTo);
-        }
     }
 }
 

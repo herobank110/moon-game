@@ -6,25 +6,17 @@ import { GameEngine, DynamicObject, SimplePhysicsEngine, TwoVector, KeyboardCont
 //
 // /////////////////////////////////////////////////////////
 
-const WIDTH = 800;
-const PLAYER_WIDTH = 30;
-const PLAYER_HEIGHT = 50;
-const HEIGHT = 600;
 const FALL_SPEED = 1.5;
 const JUMP_SPEED = 1.5;
 const JUMP_TIME = 2;
 const MOVE_SPEED = 1.6;
 const MOVE_SPEED_IN_AIR = 0.02;
-/** Movement tends to go right faster. Differ left speed to compensate. */
-const MOVE_LEFT_SPEED_MULT = 1;
 
 export class Player extends DynamicObject {
     constructor(gameEngine, options, props) {
         super(gameEngine, options, props);
         this.inAir = 0;
         this.jumpTime = 0;
-        /** Local only, used for client side drawing. */
-        this.laserPointingTo = null;
     }
 
     static get netScheme() {
@@ -107,9 +99,11 @@ export default class Game extends GameEngine {
                     player.inAir = 1;
                 }
             } else if (inputData.input === "left") {
-                player.position.x -= MOVE_LEFT_SPEED_MULT * (player.inAir ? MOVE_SPEED_IN_AIR : MOVE_SPEED);
+                player.position.x -= player.inAir ? MOVE_SPEED_IN_AIR : MOVE_SPEED;
             } else if (inputData.input === "right") {
-                player.position.x += player.inAir ? MOVE_SPEED_IN_AIR : MOVE_SPEED;;
+                player.position.x += player.inAir ? MOVE_SPEED_IN_AIR : MOVE_SPEED;
+            } else if (inputData.input === "attack") {
+                const aim = new TwoVector(inputData.options.aimX, inputData.options.aimY);
             }
         }
     }
